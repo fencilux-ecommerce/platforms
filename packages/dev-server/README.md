@@ -24,6 +24,10 @@ Specify the database as above to populate that database:
 DB=sqlite yarn populate
 ```
 
+```bash
+DB_USERNAME=admin DB_PASSWORD=secret DB_NAME=postgres DB=postgres yarn populate
+```
+
 ## Testing custom ui extension compilation
 
 In order to compile ui extensions within this monorepo, you need to add the following entry to
