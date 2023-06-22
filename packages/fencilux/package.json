@@ -1,0 +1,31 @@
+{
+    "name": "fencilux-ecommerce",
+    "version": "2.0.2",
+    "main": "index.js",
+    "license": "MIT",
+    "private": true,
+    "scripts": {
+        "populate": "node -r ts-node/register -r dotenv/config populate-server.ts",
+        "start": "node dist/index.js",
+        "build": "tsc"
+    },
+    "dependencies": {
+        "@vendure/admin-ui-plugin": "^2.0.2",
+        "@vendure/asset-server-plugin": "^2.0.2",
+        "@vendure/common": "^2.0.2",
+        "@vendure/core": "^2.0.2",
+        "@vendure/email-plugin": "^2.0.2",
+        "pg": "^8.11.0",
+        "typescript": "4.9.5"
+    },
+    "devDependencies": {
+        "@types/csv-stringify": "^3.1.0",
+        "@vendure/testing": "^2.0.2",
+        "@vendure/ui-devkit": "^2.0.2",
+        "commander": "^7.1.0",
+        "concurrently": "^5.0.0",
+        "csv-stringify": "^5.3.3",
+        "dayjs": "^1.11.7",
+        "progress": "^2.0.3"
+    }
+}
