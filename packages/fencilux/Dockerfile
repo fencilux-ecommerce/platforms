@@ -1,5 +1,5 @@
 # build
-FROM node:18.16.1-alpine as builder
+FROM node:18.16.1 as builder
 
 WORKDIR /usr/src/app
 
@@ -12,7 +12,7 @@ COPY tsconfig.json .
 
 RUN yarn build
 
-FROM node:18.16.1-alpine as runner
+FROM node:18.16.1 as runner
 
 WORKDIR /usr/src/app
 
