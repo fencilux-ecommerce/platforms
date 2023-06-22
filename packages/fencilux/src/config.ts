@@ -95,7 +95,7 @@ export const config: VendureConfig = {
             route: 'admin',
             port: 5001,
         }),
-    ],``
+    ],
 };
 
 function getDbConfig(): DataSourceOptions {

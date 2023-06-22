@@ -1,24 +1,25 @@
 # build
-FROM node:16 as builder
+FROM node:18.16.1-alpine as builder
 
 WORKDIR /usr/src/app
 
 COPY package.json ./
 # COPY yarn.lock ./
 RUN yarn --production
-COPY src .
+COPY src src
 COPY static static
 COPY tsconfig.json .
 
-# RUN yarn build
+RUN yarn build
 
-# FROM node:16.20-alpine3.18 as runner
+FROM node:18.16.1-alpine as runner
 
-# WORKDIR /usr/src/app
+WORKDIR /usr/src/app
 
-# COPY --from=builder /usr/src/app/package.json ./
-# COPY --from=builder /usr/src/app/yarn.lock ./
-# RUN yarn --production
+COPY --from=builder /usr/src/app/package.json ./
+COPY --from=builder /usr/src/app/static ./static
+COPY --from=builder /usr/src/app/yarn.lock ./
+RUN yarn --production
 
-# COPY --from=builder /usr/src/app/dist ./dist
-# COPY --from=builder /usr/src/app/static ./static
+COPY --from=builder /usr/src/app/dist ./dist
+COPY --from=builder /usr/src/app/static ./static

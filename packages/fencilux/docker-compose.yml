@@ -5,11 +5,11 @@ services:
       context: .
       dockerfile: Dockerfile
 
-    image: fencilux/ecommerce
+    image: quangthinhdev/fencilux-ecommerce:0.0.1
     ports:
       - 3000:3000
-    # command: ["yarn", "fencilux"]
-    command: ["/bin/sh", "-ec", "while :; do echo '.'; sleep 5 ; done"]
+    command: ["yarn", "start"]
+    # command: ["/bin/sh", "-ec", "while :; do echo '.'; sleep 5 ; done"]
     environment:
       DB_HOST: postgres
       DB_PORT: 5432
@@ -27,9 +27,9 @@ services:
       POSTGRES_PASSWORD: secret
       PGDATA: /var/lib/postgresql/data
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
+      - ./postgres:/var/lib/postgresql/data
+    # ports:
+    #   - "5432:5432"
     command: postgres -c shared_preload_libraries=pg_stat_statements -c pg_stat_statements.track=all -c pg_stat_statements.max=100000 -c max_connections=200
   pgadmin:
     image: dpage/pgadmin4:4.18
@@ -43,9 +43,10 @@ services:
       - pgadmin_data:/var/lib/pgadmin
     links:
       - "postgres:pgsql-server"
+
 volumes:
-  postgres_data:
-    driver: local
+#   postgres_data:
+#     driver: local
 
   pgadmin_data:
     driver: local
